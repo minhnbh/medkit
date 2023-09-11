@@ -1,32 +1,34 @@
-import React from 'react';
-import { View, Input, IconButton } from 'native-base';
+import React, { useState } from 'react';
+import { View, Input, IconButton, StyledProps } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import { COLORS } from 'constants/colors';
 
-interface ISearchBox {
+interface ISearchBox extends StyledProps {
 	placeholder?: string;
-	value: string;
-	onChange: (value: string) => void;
 }
 
-const SearchBox = ({ placeholder, value, onChange }: ISearchBox) => {
+const SearchBox = ({ placeholder, ...props }: ISearchBox) => {
+	const [value, setValue] = useState('');
+
 	const handleChange = (changeValue: string) => {
-		onChange(changeValue);
+		setValue(changeValue);
 	};
 
 	return (
-		<View height={40} justifyContent="center">
+		<View height="40px" justifyContent="center" {...props}>
 			<Input
 				rightElement={
 					<IconButton
-						icon={<Icon name="search" color="rgb(115, 120, 133)" size={32} />}
+						icon={<Icon name="search" color="rgb(115, 120, 133)" size={16} />}
 					/>
 				}
-				backgroundColor="rgb(250, 250, 250)"
+				backgroundColor={COLORS.white}
 				placeholder={placeholder}
 				borderRadius={12}
 				fontSize={14}
 				value={value}
 				onChangeText={handleChange}
+				borderWidth={0}
 			/>
 		</View>
 	);

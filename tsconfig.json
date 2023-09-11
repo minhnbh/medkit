@@ -30,9 +30,9 @@
     "forceConsistentCasingInFileNames": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
-		"baseUrl": "./" /* Base directory to resolve non-absolute module names. */,
+		"baseUrl": "." /* Base directory to resolve non-absolute module names. */,
 		"paths": {
-			"*": ["src"],
+			"*": ["src/*"],
 			"@assets": ["src/assets"],
 			"@assets/*": ["src/assets/*"],
 			"@components": ["src/components"],

@@ -1,8 +1,9 @@
+import { ITextProps, Text } from 'native-base';
 import React, { useEffect, useState } from 'react';
 
-const CallingTime = () => {
+const CallingTime = (props: ITextProps) => {
 	let timeCountInterval: NodeJS.Timeout;
-	const [time, setTime] = useState(0);
+	let time = 0;
 	const [formatTime, setFormatTime] = useState('00:00:00');
 
 	const checkingIfOneDigit = (num: number) => (num < 10 ? `0${num}` : num);
@@ -12,10 +13,10 @@ const CallingTime = () => {
 			clearInterval(timeCountInterval);
 		}
 		timeCountInterval = setInterval(() => {
+			time++;
 			const hour = Math.floor(time / (60 * 60));
 			const minute = Math.floor((time - hour * 60) / 60);
 			const second = Math.floor((time - hour * 60) % 60);
-			setTime(prev => prev + 1);
 			setFormatTime(
 				`${checkingIfOneDigit(hour)}:${checkingIfOneDigit(
 					minute,
@@ -31,7 +32,7 @@ const CallingTime = () => {
 		};
 	}, []);
 
-	return <>{formatTime}</>;
+	return <Text {...props}>{formatTime}</Text>;
 };
 
 export default CallingTime;
